@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="AfterLastRow">
+		<xs:complexType>
+			<xs:attribute name="value" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AlterTablePrimaryKey">
+		<xs:complexType>
+			<xs:attribute name="value" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BIGINT" type="xs:string"/>
+	<xs:element name="BINARY" type="xs:string"/>
+	<xs:element name="BIT" type="xs:string"/>
+	<xs:element name="BLOB" type="xs:string"/>
+	<xs:element name="BOOLEAN" type="xs:string"/>
+	<xs:element name="BeforeFirstRow">
+		<xs:complexType>
+			<xs:attribute name="value" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CHAR" type="xs:string"/>
+	<xs:element name="CLOB" type="xs:string"/>
+	<xs:element name="CURSOR" type="xs:string"/>
+	<xs:element name="ClassName">
+		<xs:complexType>
+			<xs:attribute name="value" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Connection">
+		<xs:complexType>
+			<xs:attribute name="value" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DATE" type="xs:string"/>
+	<xs:element name="DATETIME" type="xs:string"/>
+	<xs:element name="DECIMAL" type="xs:string"/>
+	<xs:element name="DOUBLE" type="xs:string"/>
+	<xs:element name="Driver">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ClassName"/>
+				<xs:element ref="Connection"/>
+				<xs:element ref="RequiredUser"/>
+				<xs:element ref="FirstColumnResult"/>
+				<xs:element ref="EnableJumpInResult"/>
+				<xs:element ref="AfterLastRow"/>
+				<xs:element ref="EnableOrderBy"/>
+				<xs:element ref="AlterTablePrimaryKey"/>
+				<xs:element name="MetaData">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="true"/>
+									<xs:enumeration value="false"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="SetFetchSizeEnabled">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="true"/>
+									<xs:enumeration value="false"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="RowCountEnabled">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="true"/>
+									<xs:enumeration value="false"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="SetCursorNameEnabled">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="true"/>
+									<xs:enumeration value="false"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="SetEmptyStringAsNull">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="true"/>
+									<xs:enumeration value="false"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ReadingOrderRelevant">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="true"/>
+									<xs:enumeration value="false"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FileSystemDatabase">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="true"/>
+									<xs:enumeration value="false"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="MaxConstraintLength">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="true"/>
+									<xs:enumeration value="false"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="GetColumnsSupported">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="true"/>
+									<xs:enumeration value="false"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="SetMaxRowsSupported">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="true"/>
+									<xs:enumeration value="false"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EnableJumpInResult">
+		<xs:complexType>
+			<xs:attribute name="value" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="false"/>
+						<xs:enumeration value="true"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EnableOrderBy">
+		<xs:complexType>
+			<xs:attribute name="value" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EnablePreviousRecord">
+		<xs:complexType>
+			<xs:attribute name="value" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="false"/>
+						<xs:enumeration value="true"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FLOAT" type="xs:string"/>
+	<xs:element name="FirstColumnResult">
+		<xs:complexType>
+			<xs:attribute name="value" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IMAGE" type="xs:string"/>
+	<xs:element name="INT" type="xs:string"/>
+	<xs:element name="INTEGER" type="xs:string"/>
+	<xs:element name="JDBCType">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="BIT"/>
+				<xs:element ref="BIGINT"/>
+				<xs:element ref="BINARY"/>
+				<xs:element ref="BLOB"/>
+				<xs:element ref="BOOLEAN"/>
+				<xs:element ref="CHAR"/>
+				<xs:element ref="CLOB"/>
+				<xs:element ref="DATE"/>
+				<xs:element ref="DECIMAL"/>
+				<xs:element ref="DOUBLE"/>
+				<xs:element ref="FLOAT"/>
+				<xs:element ref="INTEGER"/>
+				<xs:element ref="LONGVARBINARY"/>
+				<xs:element ref="LONGVARCHAR"/>
+				<xs:element ref="NUMERIC"/>
+				<xs:element ref="REAL"/>
+				<xs:element ref="SMALLINT"/>
+				<xs:element ref="TIME"/>
+				<xs:element ref="TIMESTAMP"/>
+				<xs:element ref="TINYINT"/>
+				<xs:element ref="VARBINARY"/>
+				<xs:element ref="VARCHAR"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LONGVARBINARY" type="xs:string"/>
+	<xs:element name="LONGVARCHAR" type="xs:string"/>
+	<xs:element name="LoaderConf">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="OidDbType"/>
+				<xs:element ref="VersionDbType"/>
+				<xs:element ref="OidDbColumnName"/>
+				<xs:element ref="VersionDbColumnName"/>
+				<xs:element ref="Driver" maxOccurs="unbounded"/>
+				<xs:element ref="SQLType"/>
+				<xs:element ref="JDBCType"/>
+				<xs:element name="ExcludeTables"/>
+				<xs:element name="DateFormat"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MONEY" type="xs:string"/>
+	<xs:element name="NCHAR" type="xs:string"/>
+	<xs:element name="NTEXT" type="xs:string"/>
+	<xs:element name="NUMERIC" type="xs:string"/>
+	<xs:element name="NVARCHAR" type="xs:string"/>
+	<xs:element name="OidDbColumnName" type="xs:string"/>
+	<xs:element name="OidDbType" type="xs:string"/>
+	<xs:element name="REAL" type="xs:string"/>
+	<xs:element name="RequiredUser">
+		<xs:complexType>
+			<xs:attribute name="value" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SMALLDATETIME" type="xs:string"/>
+	<xs:element name="SMALLINT" type="xs:string"/>
+	<xs:element name="SMALLMONEY" type="xs:string"/>
+	<xs:element name="SQLType">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="BIGINT"/>
+				<xs:element ref="DATETIME"/>
+				<xs:element ref="MONEY"/>
+				<xs:element ref="SMALLDATETIME"/>
+				<xs:element ref="TINYINT"/>
+				<xs:element ref="BINARY"/>
+				<xs:element ref="DECIMAL"/>
+				<xs:element ref="NCHAR"/>
+				<xs:element ref="SMALLINT"/>
+				<xs:element ref="VARBINARY"/>
+				<xs:element ref="BIT"/>
+				<xs:element ref="FLOAT"/>
+				<xs:element ref="NTEXT"/>
+				<xs:element ref="SMALLMONEY"/>
+				<xs:element ref="VARCHAR"/>
+				<xs:element ref="CHAR"/>
+				<xs:element ref="IMAGE"/>
+				<xs:element ref="NVARCHAR"/>
+				<xs:element ref="TEXT"/>
+				<xs:element ref="UNIQUEIDENTIFIER"/>
+				<xs:element ref="CURSOR"/>
+				<xs:element ref="INT"/>
+				<xs:element ref="REAL"/>
+				<xs:element ref="TIMESTAMP"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TEXT" type="xs:string"/>
+	<xs:element name="TIME" type="xs:string"/>
+	<xs:element name="TIMESTAMP" type="xs:string"/>
+	<xs:element name="TINYINT" type="xs:string"/>
+	<xs:element name="UNIQUEIDENTIFIER" type="xs:string"/>
+	<xs:element name="VARBINARY" type="xs:string"/>
+	<xs:element name="VARCHAR" type="xs:string"/>
+	<xs:element name="VersionDbColumnName" type="xs:string"/>
+	<xs:element name="VersionDbType" type="xs:string"/>
+</xs:schema>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="LoaderConf">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Database"/>
+				<xs:element ref="JAVAType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Database">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Vendor" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="JAVAType">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="BIT"/>
+				<xs:element ref="BIGINT"/>
+				<xs:element ref="BINARY"/>
+				<xs:element ref="BLOB"/>
+				<xs:element ref="BOOLEAN"/>
+				<xs:element ref="CHAR"/>
+				<xs:element ref="CLOB"/>
+				<xs:element ref="DATE"/>
+				<xs:element ref="DECIMAL"/>
+				<xs:element ref="DOUBLE"/>
+				<xs:element ref="FLOAT"/>
+				<xs:element ref="INTEGER"/>
+				<xs:element ref="LONGVARBINARY"/>
+				<xs:element ref="LONGVARCHAR"/>
+				<xs:element ref="NUMERIC"/>
+				<xs:element ref="REAL"/>
+				<xs:element ref="SMALLINT"/>
+				<xs:element ref="TIME"/>
+				<xs:element ref="TIMESTAMP"/>
+				<xs:element ref="TINYINT"/>
+				<xs:element ref="VARBINARY"/>
+				<xs:element ref="VARCHAR"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BIGINT" type="xs:string"/>
+	<xs:element name="BINARY" type="xs:string"/>
+	<xs:element name="BIT" type="xs:string"/>
+	<xs:element name="BLOB" type="xs:string"/>
+	<xs:element name="BOOLEAN" type="xs:string"/>
+	<xs:element name="CHAR" type="xs:string"/>
+	<xs:element name="CLOB" type="xs:string"/>
+	<xs:element name="DATE" type="xs:string"/>
+	<xs:element name="DECIMAL" type="xs:string"/>
+	<xs:element name="DOUBLE" type="xs:string"/>
+	<xs:element name="FLOAT" type="xs:string"/>
+	<xs:element name="INTEGER" type="xs:string"/>
+	<xs:element name="LONGVARBINARY" type="xs:string"/>
+	<xs:element name="LONGVARCHAR" type="xs:string"/>
+	<xs:element name="NUMERIC" type="xs:string"/>
+	<xs:element name="REAL" type="xs:string"/>
+	<xs:element name="SMALLINT" type="xs:string"/>
+	<xs:element name="TIME" type="xs:string"/>
+	<xs:element name="TIMESTAMP" type="xs:string"/>
+	<xs:element name="TINYINT" type="xs:string"/>
+	<xs:element name="VARBINARY" type="xs:string"/>
+	<xs:element name="VARCHAR" type="xs:string"/>
+	<xs:element name="Vendor">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="name" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="DB2"/>
+								<xs:enumeration value="HypersonicSQL"/>
+								<xs:enumeration value="Informix"/>
+								<xs:enumeration value="InstantDB"/>
+								<xs:enumeration value="MSQL"/>
+								<xs:enumeration value="MySQL"/>
+								<xs:enumeration value="Oracle"/>
+								<xs:enumeration value="PostgreSQL"/>
+								<xs:enumeration value="QED"/>
+								<xs:enumeration value="Standard"/>
+								<xs:enumeration value="Sybase"/>
+								<xs:enumeration value="Csv"/>
+								<xs:enumeration value="Excel"/>
+								<xs:enumeration value="Xml"/>
+								<xs:enumeration value="Access"/>
+								<xs:enumeration value="Mckoi"/>
+								<xs:enumeration value="Octetstring"/>
+								<xs:enumeration value="CJDBC"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

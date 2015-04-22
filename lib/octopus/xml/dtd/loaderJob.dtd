@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Loader version = 2.6. -->
+<!ELEMENT loaderJob (restartCounter? | variables? | jdbcDefaultParameters? | sql* | echo* | definitionInclude* | importDefinition* | copyTable*)+>
+<!ATTLIST loaderJob
+	logMode (none | normal | full) #IMPLIED
+	objectIDIncrement CDATA #IMPLIED
+	objectIDTableName CDATA #IMPLIED
+	objectIDColumnName CDATA #IMPLIED
+	objectIDNameColumnName CDATA #IMPLIED
+	objectIDNameColumnValue CDATA #IMPLIED
+	onErrorContinue CDATA #IMPLIED
+	commit CDATA #IMPLIED
+	userID CDATA #IMPLIED
+	logDir CDATA #IMPLIED
+	logFile CDATA #IMPLIED
+	vendorConfig CDATA #IMPLIED
+	objectIDAutoCreate CDATA #IMPLIED
+	objectIDStartValue CDATA #IMPLIED
+	commitCount CDATA #IMPLIED
+	oidLogic CDATA #IMPLIED
+	tableMode CDATA #IMPLIED
+	dataCutOff (true | false) #IMPLIED
+	logTableName CDATA #IMPLIED
+	logTable CDATA #IMPLIED
+	logColumnName CDATA #IMPLIED
+	logRowNumber CDATA #IMPLIED
+	logOriginalValue CDATA #IMPLIED
+	logNewValue CDATA #IMPLIED
+	logImportDefinitionName CDATA #IMPLIED
+	logOperationName CDATA #IMPLIED
+	logTypeName CDATA #IMPLIED
+	logClassName CDATA #IMPLIED
+	pathToLoggerConf CDATA #IMPLIED
+	setCursorName (true | false) #IMPLIED
+	setFetchSize (true | false) #IMPLIED
+	returnCode CDATA #IMPLIED
+>
+<!ELEMENT restartCounter EMPTY>
+<!ATTLIST restartCounter
+	tableName CDATA #REQUIRED
+	importDefinitionColumnName CDATA #REQUIRED
+	restartCounterColumnName CDATA #REQUIRED
+	restartAutoCreate CDATA #REQUIRED
+>
+<!ELEMENT variables (variable+)>
+<!ATTLIST variables
+	prefix CDATA #IMPLIED
+	suffix CDATA #IMPLIED
+	override CDATA #IMPLIED
+	replaceInConstants CDATA #IMPLIED
+	replaceInSQL CDATA #IMPLIED
+	replaceInData CDATA #IMPLIED
+	replaceInJDBC CDATA #IMPLIED
+>
+<!ELEMENT variable EMPTY>
+<!ATTLIST variable
+	name CDATA #REQUIRED
+	value CDATA #IMPLIED
+	prefix CDATA #IMPLIED
+	suffix CDATA #IMPLIED
+	override CDATA #IMPLIED
+	replaceInConstants CDATA #IMPLIED
+	replaceInSQL CDATA #IMPLIED
+	replaceInData CDATA #IMPLIED
+	replaceInJDBC CDATA #IMPLIED
+	defaultValue CDATA #IMPLIED
+>
+<!ELEMENT jdbcDefaultParameters (jdbcSourceParameters | jdbcTargetParameters | (jdbcSourceParameters, jdbcTargetParameters))>
+<!ELEMENT jdbcSourceParameters (jdbcSourceParameter, jdbcSourceParameter, jdbcSourceParameter?, jdbcSourceParameter?)>
+<!ATTLIST jdbcSourceParameters
+	dbVendor (Octetstring | octetstring | cjdbc | CJDBC | xml | Xml | Csv | csv | mssql | Mssql | msql | MSQL | MySql | MySQL | Excel | Access | PostgreSQL | Qed | QED | instantDB | InstantDB | JDataStore | Hsqldb | HypersonicSQL | Oracle | DB2 | db2 | Mckoi | mckoi | Sybase | Paradox) #IMPLIED
+	driverName CDATA #IMPLIED
+>
+<!ELEMENT jdbcSourceParameter EMPTY>
+<!ATTLIST jdbcSourceParameter
+	name (JdbcDriver | Connection.Url | User | Password) #REQUIRED
+	value CDATA #REQUIRED
+>
+<!ELEMENT jdbcTargetParameters (jdbcTargetParameter, jdbcTargetParameter, jdbcTargetParameter?, jdbcTargetParameter?)>
+<!ATTLIST jdbcTargetParameters
+	dbVendor (Octetstring | octetstring | cjdbc | CJDBC | xml | Xml | Csv | csv | mssql | Mssql | msql | MSQL | MySql | MySQL | Excel | Access | PostgreSQL | Qed | QED | instantDB | InstantDB | JDataStore | Hsqldb | HypersonicSQL | Oracle | DB2 | db2 | Mckoi | mckoi | Sybase | Paradox) #IMPLIED
+	driverName CDATA #IMPLIED
+>
+<!ELEMENT jdbcTargetParameter EMPTY>
+<!ATTLIST jdbcTargetParameter
+	name (JdbcDriver | Connection.Url | User | Password) #REQUIRED
+	value CDATA #REQUIRED
+>
+<!ELEMENT sql (jdbcTargetParameters?, include?, sqlStmt?)>
+<!ATTLIST sql
+	name CDATA #REQUIRED
+	logMode (none | normal | full) #IMPLIED
+	onErrorContinue (true | false) #IMPLIED
+	commit (true | false) #IMPLIED
+	returnCode CDATA #IMPLIED
+>
+<!ELEMENT echo EMPTY>
+<!ATTLIST echo
+	message CDATA #REQUIRED
+>
+<!ELEMENT include EMPTY>
+<!ATTLIST include
+	href CDATA #REQUIRED
+	parse CDATA #REQUIRED
+>
+<!ELEMENT sqlStmt (#PCDATA | include)*>
+<!ELEMENT definitionInclude (include)>
+<!ELEMENT copyTable (jdbcParameters?)>
+<!ATTLIST copyTable
+	name CDATA #REQUIRED
+	sourceTableName CDATA #REQUIRED
+	targetTableName CDATA #REQUIRED
+	logMode (none | normal | full) #IMPLIED
+	oidLogic (true | false) #REQUIRED
+	onErrorContinue (true | false) #IMPLIED
+	commitCount CDATA #IMPLIED
+	setCursorName (true | false) #IMPLIED
+	setFetchSize (true | false) #IMPLIED
+	objectIDIncrement CDATA #IMPLIED
+>
+<!ELEMENT importDefinition (jdbcParameters? | sortColumns? | valueColumns? | variableColumns? | constantColumns? | transformations? | relationColumns? | counterColumns? | tables?)+>
+<!ATTLIST importDefinition
+	name CDATA #REQUIRED
+	tableName CDATA #IMPLIED
+	commitCount CDATA #IMPLIED
+	logMode (none | normal | full) #IMPLIED
+	selectStatement CDATA #IMPLIED
+	objectIDIncrement CDATA #IMPLIED
+	objectIDTableName CDATA #IMPLIED
+	objectIDColumnName CDATA #IMPLIED
+	objectIDNameColumnName CDATA #IMPLIED
+	objectIDNameColumnValue CDATA #IMPLIED
+	objectIDAutoCreate CDATA #IMPLIED
+	objectIDStartValue CDATA #IMPLIED
+	onErrorContinue (true | false) #IMPLIED
+	dataCutOff (true | false) #IMPLIED
+	setCursorName (true | false) #IMPLIED
+	setFetchSize (true | false) #IMPLIED
+	returnCode CDATA #IMPLIED
+>
+<!ELEMENT jdbcParameters (jdbcSourceParameters | jdbcTargetParameters | (jdbcSourceParameters, jdbcTargetParameters))>
+<!ELEMENT sortColumns (sortColumn)>
+<!ELEMENT sortColumn EMPTY>
+<!ATTLIST sortColumn
+	entry CDATA #REQUIRED
+>
+<!ELEMENT valueColumns (valueColumn+)>
+<!ELEMENT valueColumn EMPTY>
+<!ATTLIST valueColumn
+	sourceColumnName CDATA #REQUIRED
+	targetTableName CDATA #REQUIRED
+	targetColumnName CDATA #REQUIRED
+	targetTableID CDATA #REQUIRED
+	defaultValue CDATA #IMPLIED
+	toHex (true | false) #IMPLIED
+	fromHex (true | false) #IMPLIED
+	valueMode (Key | Overwrite | Update | SetIfCreated | SetNull) #REQUIRED
+>
+<!ELEMENT variableColumns (variableColumn* | userIDColumn* | timeStampColumn*)+>
+<!ELEMENT variableColumn EMPTY>
+<!ATTLIST variableColumn
+	name CDATA #REQUIRED
+	targetTableName CDATA #REQUIRED
+	targetColumnName CDATA #REQUIRED
+	targetTableID CDATA #REQUIRED
+	defaultValue CDATA #IMPLIED
+	valueMode (Overwrite | Update | SetIfCreated | Key | SetNull) #REQUIRED
+>
+<!ELEMENT userIDColumn EMPTY>
+<!ATTLIST userIDColumn
+	name CDATA #IMPLIED
+	targetTableName CDATA #REQUIRED
+	targetColumnName CDATA #REQUIRED
+	targetTableID CDATA #REQUIRED
+	defaultValue CDATA #IMPLIED
+	valueMode (Key | Overwrite | Update | SetIfCreated) #REQUIRED
+>
+<!ELEMENT timeStampColumn EMPTY>
+<!ATTLIST timeStampColumn
+	name CDATA #IMPLIED
+	targetTableName CDATA #REQUIRED
+	targetColumnName CDATA #REQUIRED
+	targetTableID CDATA #REQUIRED
+	valueMode (Overwrite | Update | SetIfCreated) #REQUIRED
+>
+<!ELEMENT relationColumns (relationColumn+)>
+<!ELEMENT relationColumn EMPTY>
+<!ATTLIST relationColumn
+	relationSourceTableName CDATA #REQUIRED
+	relationSourceColumnName CDATA #IMPLIED
+	relationSourceTableID CDATA #REQUIRED
+	relationTargetTableName CDATA #REQUIRED
+	relationTargetColumnName CDATA #IMPLIED
+	relationTargetTableID CDATA #REQUIRED
+	defaultValue CDATA #IMPLIED
+	relationMode (Key | Overwrite | Update | SetIfCreated | SetNull) #REQUIRED
+>
+<!ELEMENT transformations (transformation+)>
+<!ELEMENT transformation ((sourceColumns | targetColumns))+>
+<!ATTLIST transformation
+	name CDATA #REQUIRED
+	transformatorClassName CDATA #REQUIRED
+	transformatorConfig CDATA #IMPLIED
+>
+<!ELEMENT sourceColumns (sourceColumn+)>
+<!ELEMENT sourceColumn EMPTY>
+<!ATTLIST sourceColumn
+	name CDATA #REQUIRED
+>
+<!ELEMENT targetColumns (targetColumn+)>
+<!ELEMENT targetColumn EMPTY>
+<!ATTLIST targetColumn
+	name CDATA #REQUIRED
+	tableName CDATA #REQUIRED
+	tableID CDATA #REQUIRED
+	valueMode CDATA #REQUIRED
+>
+<!ELEMENT constantColumns (constantColumn+)>
+<!ELEMENT constantColumn EMPTY>
+<!ATTLIST constantColumn
+	targetTableName CDATA #REQUIRED
+	targetColumnName CDATA #REQUIRED
+	targetTableID CDATA #REQUIRED
+	valueMode (Key | Overwrite | Update | SetIfCreated | SetNull) #REQUIRED
+	constantValue CDATA #REQUIRED
+>
+<!ELEMENT counterColumns ((counterColumn* | subCounterColumn*))+>
+<!ATTLIST counterColumns
+	counterTableName CDATA #REQUIRED
+	counterNameColumn CDATA #REQUIRED
+	counterValueColumn CDATA #REQUIRED
+>
+<!ELEMENT counterColumn EMPTY>
+<!ATTLIST counterColumn
+	counterName CDATA #REQUIRED
+	counterStartValue CDATA #IMPLIED
+	counterIncrement CDATA #IMPLIED
+	targetTableName CDATA #REQUIRED
+	targetTableID CDATA #REQUIRED
+	targetColumnName CDATA #REQUIRED
+	valueMode (SetIfCreated) #REQUIRED
+	counterStartValueReset (true | false) #IMPLIED
+>
+<!ELEMENT subCounterColumn (subCounterKeyColumn+)>
+<!ATTLIST subCounterColumn
+	counterName CDATA #REQUIRED
+	counterStartValue CDATA #IMPLIED
+	counterIncrement CDATA #IMPLIED
+	targetTableName CDATA #REQUIRED
+	targetTableID CDATA #REQUIRED
+	targetColumnName CDATA #REQUIRED
+	valueMode (SetIfCreated) #REQUIRED
+>
+<!ELEMENT subCounterKeyColumn EMPTY>
+<!ATTLIST subCounterKeyColumn
+	keyColumnName CDATA #REQUIRED
+>
+<!ELEMENT tables (table+)>
+<!ELEMENT table EMPTY>
+<!ATTLIST table
+	tableName CDATA #REQUIRED
+	tableID CDATA #REQUIRED
+	insert (true | false) #REQUIRED
+	tableMode (Cache | Query) #REQUIRED
+	autoMapColumns (true | false) #IMPLIED
+	defaultMode (Overwrite | Update | SetIfCreated | SetNull) #IMPLIED
+	oidLogic (true | false) #REQUIRED
+>

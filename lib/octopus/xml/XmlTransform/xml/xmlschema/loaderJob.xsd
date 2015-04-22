@@ -1,0 +1,790 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.objectweb.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.objectweb.org">
+	<xs:element name="constantColumn">
+		<xs:complexType>
+			<xs:attribute name="targetTableName" type="xs:string" use="required"/>
+			<xs:attribute name="targetColumnName" type="xs:string" use="required"/>
+			<xs:attribute name="targetTableID" type="xs:string" use="required"/>
+			<xs:attribute name="valueMode" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="Key"/>
+						<xs:enumeration value="Overwrite"/>
+						<xs:enumeration value="Update"/>
+						<xs:enumeration value="SetIfCreated"/>
+						<xs:enumeration value="SetNull"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="constantValue" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="constantColumns">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="constantColumn" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="counterColumn">
+		<xs:complexType>
+			<xs:attribute name="counterName" type="xs:string" use="required"/>
+			<xs:attribute name="counterStartValue" type="xs:string" use="optional"/>
+			<xs:attribute name="counterIncrement" type="xs:string" use="optional"/>
+			<xs:attribute name="targetTableName" type="xs:string" use="required"/>
+			<xs:attribute name="targetTableID" type="xs:string" use="required"/>
+			<xs:attribute name="targetColumnName" type="xs:string" use="required"/>
+			<xs:attribute name="valueMode" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="SetIfCreated"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="counterStartValueReset" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="counterColumns">
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="counterColumn"/>
+				<xs:element ref="subCounterColumn"/>
+			</xs:choice>
+			<xs:attribute name="counterTableName" type="xs:string" use="required"/>
+			<xs:attribute name="counterNameColumn" type="xs:string" use="required"/>
+			<xs:attribute name="counterValueColumn" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="definitionInclude">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="include"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="echo">
+		<xs:complexType>
+			<xs:attribute name="message" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="importDefinition">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="jdbcParameters" minOccurs="0"/>
+				<xs:element ref="sortColumns" minOccurs="0"/>
+				<xs:element ref="valueColumns" minOccurs="0"/>
+				<xs:element ref="tables"/>
+				<xs:element ref="variableColumns" minOccurs="0"/>
+				<xs:element ref="constantColumns" minOccurs="0"/>
+				<xs:element ref="relationColumns" minOccurs="0"/>
+				<xs:element ref="transformations" minOccurs="0"/>
+				<xs:element ref="counterColumns" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="tableName" type="xs:string" use="optional"/>
+			<xs:attribute name="commitCount" type="xs:string" use="optional"/>
+			<xs:attribute name="logMode" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="normal"/>
+						<xs:enumeration value="full"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="selectStatement" type="xs:string" use="optional"/>
+			<xs:attribute name="objectIDIncrement" type="xs:string" use="optional"/>
+			<xs:attribute name="objectIDTableName" type="xs:string" use="optional"/>
+			<xs:attribute name="objectIDColumnName" type="xs:string" use="optional"/>
+			<xs:attribute name="objectIDNameColumnName" type="xs:string" use="optional"/>
+			<xs:attribute name="objectIDNameColumnValue" type="xs:string" use="optional"/>
+			<xs:attribute name="objectIDAutoCreate" type="xs:string" use="optional"/>
+			<xs:attribute name="objectIDStartValue" type="xs:string" use="optional"/>
+			<xs:attribute name="onErrorContinue" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="dataCutOff" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="setCursorName" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="setFetchSize" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="returnCode" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="include">
+		<xs:complexType>
+			<xs:attribute name="href" type="xs:string" use="required"/>
+			<xs:attribute name="parse" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="jdbcDefaultParameters">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="jdbcSourceParameters" minOccurs="0"/>
+				<xs:element ref="jdbcTargetParameters" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="jdbcParameters">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="jdbcSourceParameters"/>
+				<xs:element ref="jdbcTargetParameters"/>
+				<xs:sequence>
+					<xs:element ref="jdbcSourceParameters"/>
+					<xs:element ref="jdbcTargetParameters"/>
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="jdbcSourceParameter">
+		<xs:complexType>
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="JdbcDriver"/>
+						<xs:enumeration value="Connection.Url"/>
+						<xs:enumeration value="User"/>
+						<xs:enumeration value="Password"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="value" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="jdbcSourceParameters">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="jdbcSourceParameter"/>
+				<xs:element ref="jdbcSourceParameter"/>
+				<xs:element ref="jdbcSourceParameter" minOccurs="0"/>
+				<xs:element ref="jdbcSourceParameter" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="dbVendor" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="Octetstring"/>
+						<xs:enumeration value="octetstring"/>
+						<xs:enumeration value="cjdbc"/>
+						<xs:enumeration value="CJDBC"/>
+						<xs:enumeration value="xml"/>
+						<xs:enumeration value="Xml"/>
+						<xs:enumeration value="Csv"/>
+						<xs:enumeration value="csv"/>
+						<xs:enumeration value="i18n"/>
+						<xs:enumeration value="I18n"/>
+						<xs:enumeration value="mssql"/>
+						<xs:enumeration value="Mssql"/>
+						<xs:enumeration value="msql"/>
+						<xs:enumeration value="MSQL"/>
+						<xs:enumeration value="MySql"/>
+						<xs:enumeration value="MySQL"/>
+						<xs:enumeration value="Excel"/>
+						<xs:enumeration value="Access"/>
+						<xs:enumeration value="PostgreSQL"/>
+						<xs:enumeration value="Qed"/>
+						<xs:enumeration value="QED"/>
+						<xs:enumeration value="instantDB"/>
+						<xs:enumeration value="InstantDB"/>
+						<xs:enumeration value="JDataStore"/>
+						<xs:enumeration value="Hsqldb"/>
+						<xs:enumeration value="HypersonicSQL"/>
+						<xs:enumeration value="Oracle"/>
+						<xs:enumeration value="DB2"/>
+						<xs:enumeration value="db2"/>
+						<xs:enumeration value="Mckoi"/>
+						<xs:enumeration value="mckoi"/>
+						<xs:enumeration value="Sybase"/>
+						<xs:enumeration value="Paradox"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="driverName" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="jdbcTargetParameter">
+		<xs:complexType>
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="JdbcDriver"/>
+						<xs:enumeration value="Connection.Url"/>
+						<xs:enumeration value="User"/>
+						<xs:enumeration value="Password"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="value" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="jdbcTargetParameters">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="jdbcTargetParameter"/>
+				<xs:element ref="jdbcTargetParameter"/>
+				<xs:element ref="jdbcTargetParameter" minOccurs="0"/>
+				<xs:element ref="jdbcTargetParameter" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="dbVendor" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="Octetstring"/>
+						<xs:enumeration value="octetstring"/>
+						<xs:enumeration value="cjdbc"/>
+						<xs:enumeration value="CJDBC"/>
+						<xs:enumeration value="xml"/>
+						<xs:enumeration value="Xml"/>
+						<xs:enumeration value="Csv"/>
+						<xs:enumeration value="csv"/>
+						<xs:enumeration value="i18n"/>
+						<xs:enumeration value="I18n"/>
+						<xs:enumeration value="mssql"/>
+						<xs:enumeration value="Mssql"/>
+						<xs:enumeration value="msql"/>
+						<xs:enumeration value="MSQL"/>
+						<xs:enumeration value="MySql"/>
+						<xs:enumeration value="MySQL"/>
+						<xs:enumeration value="Excel"/>
+						<xs:enumeration value="Access"/>
+						<xs:enumeration value="PostgreSQL"/>
+						<xs:enumeration value="Qed"/>
+						<xs:enumeration value="QED"/>
+						<xs:enumeration value="instantDB"/>
+						<xs:enumeration value="InstantDB"/>
+						<xs:enumeration value="JDataStore"/>
+						<xs:enumeration value="Hsqldb"/>
+						<xs:enumeration value="HypersonicSQL"/>
+						<xs:enumeration value="Oracle"/>
+						<xs:enumeration value="DB2"/>
+						<xs:enumeration value="db2"/>
+						<xs:enumeration value="Mckoi"/>
+						<xs:enumeration value="mckoi"/>
+						<xs:enumeration value="Sybase"/>
+						<xs:enumeration value="Paradox"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="driverName" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="loaderJob">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="sql" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="definitionInclude" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="importDefinition" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="restartCounter" minOccurs="0"/>
+				<xs:element ref="variables" minOccurs="0"/>
+				<xs:element ref="jdbcDefaultParameters" minOccurs="0"/>
+				<xs:element ref="echo" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="copyTable" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:attribute name="logMode" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="normal"/>
+						<xs:enumeration value="full"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="objectIDIncrement" type="xs:string" use="optional"/>
+			<xs:attribute name="objectIDTableName" type="xs:string" use="optional"/>
+			<xs:attribute name="objectIDColumnName" type="xs:string" use="optional"/>
+			<xs:attribute name="objectIDNameColumnName" type="xs:string" use="optional"/>
+			<xs:attribute name="objectIDNameColumnValue" type="xs:string" use="optional"/>
+			<xs:attribute name="onErrorContinue" type="xs:string" use="optional"/>
+			<xs:attribute name="commit" type="xs:string" use="optional"/>
+			<xs:attribute name="userID" type="xs:string" use="optional"/>
+			<xs:attribute name="logDir" type="xs:string" use="optional"/>
+			<xs:attribute name="logFile" type="xs:string" use="optional"/>
+			<xs:attribute name="vendorConfig" type="xs:string" use="optional"/>
+			<xs:attribute name="objectIDAutoCreate" type="xs:string" use="optional"/>
+			<xs:attribute name="objectIDStartValue" type="xs:string" use="optional"/>
+			<xs:attribute name="commitCount" type="xs:string" use="optional"/>
+			<xs:attribute name="oidLogic" type="xs:string" use="optional"/>
+			<xs:attribute name="tableMode" type="xs:string" use="optional"/>
+			<xs:attribute name="dataCutOff" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="logTableName" type="xs:string" use="optional"/>
+			<xs:attribute name="logTable" type="xs:string" use="optional"/>
+			<xs:attribute name="logColumnName" type="xs:string" use="optional"/>
+			<xs:attribute name="logRowNumber" type="xs:string" use="optional"/>
+			<xs:attribute name="logOriginalValue" type="xs:string" use="optional"/>
+			<xs:attribute name="logNewValue" type="xs:string" use="optional"/>
+			<xs:attribute name="logImportDefinitionName" type="xs:string" use="optional"/>
+			<xs:attribute name="logOperationName" type="xs:string" use="optional"/>
+			<xs:attribute name="logTypeName" type="xs:string" use="optional"/>
+			<xs:attribute name="logClassName" type="xs:string" use="optional"/>
+			<xs:attribute name="pathToLoggerConf" type="xs:string" use="optional"/>
+			<xs:attribute name="setCursorName" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="setFetchSize" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="returnCode" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="relationColumn">
+		<xs:complexType>
+			<xs:attribute name="relationSourceTableName" type="xs:string" use="required"/>
+			<xs:attribute name="relationSourceColumnName" type="xs:string" use="optional"/>
+			<xs:attribute name="relationSourceTableID" type="xs:string" use="required"/>
+			<xs:attribute name="relationTargetTableName" type="xs:string" use="required"/>
+			<xs:attribute name="relationTargetColumnName" type="xs:string" use="optional"/>
+			<xs:attribute name="relationTargetTableID" type="xs:string" use="required"/>
+			<xs:attribute name="defaultValue" type="xs:string" use="optional"/>
+			<xs:attribute name="relationMode" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="Key"/>
+						<xs:enumeration value="Overwrite"/>
+						<xs:enumeration value="Update"/>
+						<xs:enumeration value="SetIfCreated"/>
+						<xs:enumeration value="SetNull"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="relationColumns">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="relationColumn" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="transformations">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="transformation" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="transformation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="sourceColumns" maxOccurs="unbounded"/>
+				<xs:element ref="targetColumns" maxOccurs="unbounded"/>
+				<xs:element ref="javaScript" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="transformatorClassName" type="xs:string" use="required"/>
+			<xs:attribute name="transformatorConfig" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sourceColumns">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="sourceColumn" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="targetColumns">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="targetColumn" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sourceColumn">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="targetColumn">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="tableName" type="xs:string" use="required"/>
+			<xs:attribute name="tableID" type="xs:string" use="required"/>
+			<xs:attribute name="valueMode" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="restartCounter">
+		<xs:complexType>
+			<xs:attribute name="tableName" type="xs:string" use="required"/>
+			<xs:attribute name="importDefinitionColumnName" type="xs:string" use="required"/>
+			<xs:attribute name="restartCounterColumnName" type="xs:string" use="required"/>
+			<xs:attribute name="restartAutoCreate" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sortColumn">
+		<xs:complexType>
+			<xs:attribute name="entry" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sortColumns">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="sortColumn"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sql">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="jdbcTargetParameters" minOccurs="0"/>
+				<xs:element ref="include" minOccurs="0"/>
+				<xs:element ref="sqlStmt" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="logMode" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="normal"/>
+						<xs:enumeration value="full"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="onErrorContinue" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="commit" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="returnCode" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sqlStmt">
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="include"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="subCounterColumn">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="subCounterKeyColumn" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="counterName" type="xs:string" use="required"/>
+			<xs:attribute name="counterStartValue" type="xs:string" use="optional"/>
+			<xs:attribute name="counterIncrement" type="xs:string" use="optional"/>
+			<xs:attribute name="targetTableName" type="xs:string" use="required"/>
+			<xs:attribute name="targetTableID" type="xs:string" use="required"/>
+			<xs:attribute name="targetColumnName" type="xs:string" use="required"/>
+			<xs:attribute name="valueMode" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="SetIfCreated"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="subCounterKeyColumn">
+		<xs:complexType>
+			<xs:attribute name="keyColumnName" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="table">
+		<xs:complexType>
+			<xs:attribute name="tableName" type="xs:string" use="required"/>
+			<xs:attribute name="tableID" type="xs:string" use="required"/>
+			<xs:attribute name="insert" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="tableMode" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="Cache"/>
+						<xs:enumeration value="Query"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="autoMapColumns" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="defaultMode" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="Overwrite"/>
+						<xs:enumeration value="Update"/>
+						<xs:enumeration value="SetIfCreated"/>
+						<xs:enumeration value="SetNull"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="oidLogic" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tables">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="table" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="timeStampColumn">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="optional"/>
+			<xs:attribute name="targetTableName" type="xs:string" use="required"/>
+			<xs:attribute name="targetColumnName" type="xs:string" use="required"/>
+			<xs:attribute name="targetTableID" type="xs:string" use="required"/>
+			<xs:attribute name="valueMode" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="Overwrite"/>
+						<xs:enumeration value="Update"/>
+						<xs:enumeration value="SetIfCreated"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="userIDColumn">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="optional"/>
+			<xs:attribute name="targetTableName" type="xs:string" use="required"/>
+			<xs:attribute name="targetColumnName" type="xs:string" use="required"/>
+			<xs:attribute name="targetTableID" type="xs:string" use="required"/>
+			<xs:attribute name="defaultValue" type="xs:string" use="optional"/>
+			<xs:attribute name="valueMode" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="Key"/>
+						<xs:enumeration value="Overwrite"/>
+						<xs:enumeration value="Update"/>
+						<xs:enumeration value="SetIfCreated"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="valueColumn">
+		<xs:complexType>
+			<xs:attribute name="sourceColumnName" type="xs:string" use="required"/>
+			<xs:attribute name="targetTableName" type="xs:string" use="required"/>
+			<xs:attribute name="targetColumnName" type="xs:string" use="required"/>
+			<xs:attribute name="targetTableID" type="xs:string" use="required"/>
+			<xs:attribute name="defaultValue" type="xs:string" use="optional"/>
+			<xs:attribute name="toHex" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="fromHex" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="valueMode" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="Key"/>
+						<xs:enumeration value="Overwrite"/>
+						<xs:enumeration value="Update"/>
+						<xs:enumeration value="SetIfCreated"/>
+						<xs:enumeration value="SetNull"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="valueColumns">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="valueColumn" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="variable">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="value" type="xs:string" use="optional"/>
+			<xs:attribute name="prefix" type="xs:string" use="optional"/>
+			<xs:attribute name="suffix" type="xs:string" use="optional"/>
+			<xs:attribute name="override" type="xs:string" use="optional"/>
+			<xs:attribute name="replaceInConstants" type="xs:string" use="optional"/>
+			<xs:attribute name="replaceInSQL" type="xs:string" use="optional"/>
+			<xs:attribute name="replaceInData" type="xs:string" use="optional"/>
+			<xs:attribute name="replaceInJDBC" type="xs:string" use="optional"/>
+			<xs:attribute name="defaultValue" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="variableColumn">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="targetTableName" type="xs:string" use="required"/>
+			<xs:attribute name="targetColumnName" type="xs:string" use="required"/>
+			<xs:attribute name="targetTableID" type="xs:string" use="required"/>
+			<xs:attribute name="defaultValue" type="xs:string" use="optional"/>
+			<xs:attribute name="valueMode" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="Overwrite"/>
+						<xs:enumeration value="Update"/>
+						<xs:enumeration value="SetIfCreated"/>
+						<xs:enumeration value="Key"/>
+						<xs:enumeration value="SetNull"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="variableColumns">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="variableColumn" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="userIDColumn" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="timeStampColumn" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="variables">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="variable" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="prefix" type="xs:string" use="optional"/>
+			<xs:attribute name="suffix" type="xs:string" use="optional"/>
+			<xs:attribute name="override" type="xs:string" use="optional"/>
+			<xs:attribute name="replaceInConstants" type="xs:string" use="optional"/>
+			<xs:attribute name="replaceInSQL" type="xs:string" use="optional"/>
+			<xs:attribute name="replaceInData" type="xs:string" use="optional"/>
+			<xs:attribute name="replaceInJDBC" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="copyTable">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="jdbcParameters" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="sourceTableName" type="xs:string" use="required"/>
+			<xs:attribute name="targetTableName" type="xs:string" use="required"/>
+			<xs:attribute name="logMode" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="normal"/>
+						<xs:enumeration value="full"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="oidLogic" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="onErrorContinue" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="commitCount" type="xs:string" use="optional"/>
+			<xs:attribute name="setCursorName" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="setFetchSize" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="objectIDIncrement" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="javaScript">
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0">
+				<xs:element ref="include"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

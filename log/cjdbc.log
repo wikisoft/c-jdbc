@@ -1,0 +1,7 @@
+2015-04-22 17:31:07,093 INFO  controller.core.Controller C-JDBC controller (2.0.2)
+2015-04-22 17:31:07,249 INFO  controller.core.Controller Loading configuration file: /C:/C-JDBC-2.0.2/config/controller/controller.xml
+2015-04-22 17:31:07,309 INFO  controller.core.Controller JMX is enabled
+2015-04-22 17:31:07,320 INFO  controller.core.Controller Starting JMX server on host: 172.16.11.225
+2015-04-22 17:31:07,677 INFO  controller.core.Controller Waiting for connections on 0.0.0.0:25322
+2015-04-22 17:31:07,684 INFO  controller.core.Controller Controller started on 2015.04.22 17 at 05:31:07 PM CEST
+2015-04-22 17:31:07,684 INFO  controller.core.Controller Controller 172.16.11.225:25322 ready, listening to requests ...

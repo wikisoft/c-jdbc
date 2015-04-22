@@ -1,0 +1,24 @@
+0    [main] INFO  net.sourceforge.squirrel_sql.client.SquirrelLoggerFactory  - =======================================================
+1    [main] INFO  net.sourceforge.squirrel_sql.client.SquirrelLoggerFactory  - =======================================================
+1    [main] INFO  net.sourceforge.squirrel_sql.client.SquirrelLoggerFactory  - =======================================================
+4    [main] INFO  net.sourceforge.squirrel_sql.client.SquirrelLoggerFactory  - SQuirreL SQL Client Version 1.1final1 started: Wed Apr 22 17:21:13 CEST 2015
+4    [main] INFO  net.sourceforge.squirrel_sql.client.SquirrelLoggerFactory  - Copyright (c) 2001 - 2002 Colin Bell
+4    [main] INFO  net.sourceforge.squirrel_sql.client.SquirrelLoggerFactory  - java.vendor: Sun Microsystems Inc.
+4    [main] INFO  net.sourceforge.squirrel_sql.client.SquirrelLoggerFactory  - java.version: 1.6.0_45
+4    [main] INFO  net.sourceforge.squirrel_sql.client.SquirrelLoggerFactory  - java.runtime.name: Java(TM) SE Runtime Environment
+4    [main] INFO  net.sourceforge.squirrel_sql.client.SquirrelLoggerFactory  - os.name: Windows 7
+4    [main] INFO  net.sourceforge.squirrel_sql.client.SquirrelLoggerFactory  - os.version: 6.1
+4    [main] INFO  net.sourceforge.squirrel_sql.client.SquirrelLoggerFactory  - os.arch: amd64
+4    [main] INFO  net.sourceforge.squirrel_sql.client.SquirrelLoggerFactory  - user.dir: C:\C-JDBC-2.0.2\bin
+4    [main] INFO  net.sourceforge.squirrel_sql.client.SquirrelLoggerFactory  - user.home: C:\Users\normasys
+4    [main] INFO  net.sourceforge.squirrel_sql.client.SquirrelLoggerFactory  - java.home: C:\JEE\jdk-6u45\jr6
+4    [main] INFO  net.sourceforge.squirrel_sql.client.SquirrelLoggerFactory  - java.class.path: ;C:\C-JDBC-2.0.2\drivers\c-jdbc-driver.jar;C:\C-JDBC-2.0.2\3rdparty\squirrel\lib\squirrel-sql.jar;C:\C-JDBC-2.0.2\3rdparty\squirrel\lib\log4j.jar;C:\C-JDBC-2.0.2\3rdparty\squirrel\lib\nanoxml-2.1.jar;C:\C-JDBC-2.0.2\3rdparty\squirrel\lib\fw.jar;C:\C-JDBC-2.0.2\3rdparty\squirrel\;C:\C-JDBC-2.0.2\3rdparty\hsqldb\lib\hsqldb.jar
+74247 [Thread-3] ERROR net.sourceforge.squirrel_sql.client.mainframe.action.ConnectToAliasCommand  - Unexpected Error occured attempting to open an SQL connection.
+java.sql.SQLException: No controller is available to accept connections
+	at org.objectweb.cjdbc.driver.Driver.connect(Driver.java:318)
+	at org.objectweb.cjdbc.driver.Driver.connect(Driver.java:329)
+	at net.sourceforge.squirrel_sql.fw.sql.SQLDriverManager.getConnection(SQLDriverManager.java:99)
+	at net.sourceforge.squirrel_sql.client.mainframe.action.OpenConnectionCommand.execute(OpenConnectionCommand.java:112)
+	at net.sourceforge.squirrel_sql.client.mainframe.action.ConnectToAliasCommand$SheetHandler.run(ConnectToAliasCommand.java:345)
+	at net.sourceforge.squirrel_sql.fw.util.TaskExecuter.run(TaskExecuter.java:65)
+	at java.lang.Thread.run(Unknown Source)
