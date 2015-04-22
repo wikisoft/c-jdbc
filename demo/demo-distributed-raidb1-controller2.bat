@@ -16,14 +16,14 @@ goto end
 cd "%CJDBC_HOME%\bin"
 
 echo Starting hsqldb on port 9003
-start \B hsqldb.bat -port 9003
+start /B hsqldb.bat -port 9003
 
 echo Starting hsqldb on port 9004
-start \B hsqldb.bat -port 9004
+start /B hsqldb.bat -port 9004
 
 pause
 
 echo Starting Controller 2 in distributed Configuration
-start \B controller.bat -f ..\config\controller\controller-distributed-2.xml
+start /B controller.bat -f ..\config\controller\controller-distributed-2.xml
 
 :end
