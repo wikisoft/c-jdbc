@@ -49,3 +49,5 @@ xalan.jar                                   2.4.1     APACHE 2.0 http://xml.apac
 
 
 
+SET CJDBC_HOME="C:\C-JDBC-2.0.2"
+SET JAVA_HOME="C:\JEE\jdk-6u45"
